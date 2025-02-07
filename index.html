@@ -3,118 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speech Separation Experiment Results</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .container {
-            padding: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #333;
-            color: white;
-        }
-        audio {
-            width: 100%;
-            margin: 10px 0;
-        }
-    </style>
+    <title>Speech Separation Using BSRNN and DPCCN Models</title>
 </head>
 <body>
 
-<header>
-    <h1>Speech Separation Using BSRNN and DPCCN Models</h1>
-</header>
+    <!-- Title -->
+    <div style="text-align: center;">
+        <h1><strong>Speech Separation Using BSRNN and DPCCN Models</strong></h1>
+    </div>
 
-<div class="container">
-    <h2>Experiment Results</h2>
+    <!-- Abstract -->
+    <h2>Abstract</h2>
+    <p>
+        Target Speaker Extraction (TSE) uses a reference cue to extract the target speech from a mixture. 
+        In TSE systems relying on audio cues, the speaker embedding from the enrolled speech is crucial for performance, 
+        as these embeddings directly affect system success. However, these embeddings may suffer from speaker identity confusion. 
+        Unlike previous studies that focus on enhancing the performance of speaker embedding extraction, 
+        we address this challenge by proposing a Speaker Encoder Cosine Similarity (SECS) loss, which integrates the speaker centroid. 
+        This approach improves the consistency of speaker features between the enrolled and extracted speech by constraining 
+        the similarity of their representations. Furthermore, the incorporation of conditional loss suppression into the SECS loss 
+        results in comprehensive performance improvements. Experimental results validate the effectiveness of the proposed method in 
+        advancing the TSE task. A speech sample is available online.
+    </p>
 
-    <h3>1. BSRNN-Based Results</h3>
+    <!-- Model Architecture -->
+    <h2>Model Architecture</h2>
+    <embed src="images/model.pdf" width="800px" height="600px" type="application/pdf" />
 
-    <h4>1.1 Mixed Audio</h4>
-    <audio controls>
-        <source src="/audio/mixed_audio.wav" type="audio/wav">
-        Your browser does not support audio playback.
-    </audio>
+    <!-- BSRNN-Based Results -->
+    <h3>Speech Separation Experiment Display</h3>
+    <h4>1. BSRNN-Based Results</h4>
 
-    <h4>1.2 Separated Audio (Method 1)</h4>
-    <audio controls>
-        <source src="/audio/separated_audio_method1.wav" type="audio/wav">
-        Your browser does not support audio playback.
-    </audio>
-
-    <h4>1.3 Separated Audio (Method 2)</h4>
-    <audio controls>
-        <source src="/audio/separated_audio_method2.wav" type="audio/wav">
-        Your browser does not support audio playback.
-    </audio>
-
-    <h3>2. DPCCN-Based Results</h3>
-
-    <h4>2.1 Mixed Audio</h4>
-    <audio controls>
-        <source src="/audio/mixed_audio.wav" type="audio/wav">
-        Your browser does not support audio playback.
-    </audio>
-
-    <h4>2.2 Separated Audio (Method 1)</h4>
-    <audio controls>
-        <source src="/audio/separated_audio_method1.wav" type="audio/wav">
-        Your browser does not support audio playback.
-    </audio>
-
-    <h4>2.3 Separated Audio (Method 2)</h4>
-    <audio controls>
-        <source src="/audio/separated_audio_method2.wav" type="audio/wav">
-        Your browser does not support audio playback.
-    </audio>
-
-    <h3>3. Experiment Results</h3>
-
-    <table>
-        <tr>
-            <th>Metric</th>
-            <th>BSRNN</th>
-            <th>DPCCN</th>
-        </tr>
-        <tr>
-            <td>SNR (dB)</td>
-            <td>15.2</td>
-            <td>16.5</td>
-        </tr>
-        <tr>
-            <td>SDR (dB)</td>
-            <td>-5.3</td>
-            <td>-4.2</td>
-        </tr>
-        <tr>
-            <td>ISR (dB)</td>
-            <td>2.1</td>
-            <td>3.1</td>
-        </tr>
+    <h5>Audio Comparison Table</h5>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Audio ID</th>
+                <th>Mixed Audio</th>
+                <th>Method 1 Separation</th>
+                <th>Method 2 Separation</th>
+                <th>Ground Truth (Speaker 1)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><audio controls><source src="/audio/mixed_audio_1.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method1_1.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method2_1.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/first_speaker_groundtruth_1.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><audio controls><source src="/audio/mixed_audio_2.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method1_2.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method2_2.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/first_speaker_groundtruth_2.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><audio controls><source src="/audio/mixed_audio_3.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method1_3.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method2_3.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/first_speaker_groundtruth_3.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+            </tr>
+        </tbody>
     </table>
-</div>
+
+    <h5>Experiment Results</h5>
+    <img src="images/bsrnn_results.png" alt="BSRNN-based Experiment Results" />
+
+    <hr>
+
+    <!-- DPCCN-Based Results -->
+    <h4>2. DPCCN-Based Results</h4>
+
+    <h5>Audio Comparison Table</h5>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Audio ID</th>
+                <th>Mixed Audio</th>
+                <th>Method 1 Separation</th>
+                <th>Method 2 Separation</th>
+                <th>Ground Truth (Speaker 1)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><audio controls><source src="/audio/mixed_audio_1.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method1_1.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method2_1.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/first_speaker_groundtruth_1.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><audio controls><source src="/audio/mixed_audio_2.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method1_2.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method2_2.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/first_speaker_groundtruth_2.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><audio controls><source src="/audio/mixed_audio_3.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method1_3.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/separated_audio_method2_3.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+                <td><audio controls><source src="/audio/first_speaker_groundtruth_3.wav" type="audio/wav">Your browser does not support audio playback.</audio></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h5>Experiment Results</h5>
+    <img src="images/dpccn_results.png" alt="DPCCN-based Experiment Results" />
 
 </body>
 </html>
